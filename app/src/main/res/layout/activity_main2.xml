@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="20dp"
+    >
+
+
+    <TextView
+        android:id="@+id/tvProductos"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/productos" />
+
+    <EditText
+        android:id="@+id/etIdProd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/id_del_producto"
+        android:inputType="number"
+        tools:ignore="DuplicateIds"
+        android:layout_marginBottom="8dp"
+        />
+
+    <EditText
+        android:id="@+id/etNombreProd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/nombre_del_producto"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="8dp"
+        />
+
+    <AutoCompleteTextView
+        android:id="@+id/actvTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/tipo_de_producto" />
+
+    <Spinner
+        android:id="@+id/spEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp" />
+
+
+</LinearLayout>
