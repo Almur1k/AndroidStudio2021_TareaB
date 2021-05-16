@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
               Intent i = new Intent(this, MainActivity2.class);
               startActivity(i);
           }
+
           else if(queBoton.getId() == R.id.btnCancelar)
            {
-
+                finish();
           }
       }//end btnIniciar
     }//end clickBoton
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean validarUsuario() {
         boolean retorno = true;
         String user = tilUsuario.getEditText().getText().toString().trim();
-        if (!user.equals("joan@gmail.com")&& user.isEmpty()) {
+        if (!user.equals("joan@gmail.com") || user.isEmpty()) {
             tilUsuario.setError("Ingresa usuario válido");
             retorno = false;
         }

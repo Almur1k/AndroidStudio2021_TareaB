@@ -18,8 +18,10 @@
         android:layout_height="wrap_content"
         android:hint="@string/usuario"
         app:boxStrokeColor="#1E88E5"
+        app:endIconTint="#3949AB"
         app:hintTextColor="#3949AB"
-        app:startIconDrawable="@drawable/ic_usuario">
+        app:startIconDrawable="@drawable/ic_usuario"
+        app:startIconTint="#3949AB">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsuario"
@@ -40,11 +42,12 @@
         android:layout_height="wrap_content"
         android:hint="@string/contrase_a"
         app:boxStrokeColor="#1E88E5"
+        app:endIconTint="#3949AB"
         app:hintTextColor="#3949AB"
         app:passwordToggleEnabled="true"
-        app:startIconDrawable="@drawable/ic_contrasena"
 
-        >
+        app:startIconDrawable="@drawable/ic_contrasena"
+        app:startIconTint="#3949AB">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etContraseña"
