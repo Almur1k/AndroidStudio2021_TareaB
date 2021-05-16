@@ -12,56 +12,91 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilUsuario"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="@string/usuario"
+        app:boxStrokeColor="#1E88E5"
+        app:hintTextColor="#3949AB"
+        app:startIconDrawable="@drawable/ic_usuario">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="@string/usuario"
             android:layout_weight="1"
-            />
+            android:inputType="textEmailAddress"
+            android:textColorHighlight="#FF5722"
+            android:textColorLink="#FFFFFF" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilContraseña"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/contrase_a"
+        app:boxStrokeColor="#1E88E5"
+        app:hintTextColor="#3949AB"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_contrasena"
+
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etContraseña"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:inputType="textPassword"
+            android:password="false"
+            android:saveEnabled="false"
+            android:selectAllOnFocus="false"
+            android:textColorHighlight="#FF5722" />
 
-            <com.google.android.material.textfield.TextInputEditText
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/contrase_a"
-                android:layout_weight="1"/>
-
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
-                <Button
-                    android:id="@+id/btnAceptar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/aceptar"
-                    android:layout_margin="8dp"/>
 
-                <Button
-                    android:id="@+id/btnCancelar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/cancelar"
-                    android:layout_margin="8dp"/>
+
+        <Button
+            android:id="@+id/btnIniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="@string/iniciar"
+            android:textColorHighlight="#FFFFFF"
+            app:backgroundTint="#126A16"
+            android:drawableStart="@drawable/ic_iniciar"/>
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:text="@string/cancelar"
+            app:backgroundTint="#910D03"
+            android:drawableStart="@drawable/ic_cancelar"/>
 
             </LinearLayout>
 
 
-        </com.google.android.material.textfield.TextInputLayout>
-    </com.google.android.material.textfield.TextInputLayout>
+
+
 </LinearLayout>
