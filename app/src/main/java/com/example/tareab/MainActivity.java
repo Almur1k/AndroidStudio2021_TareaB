@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean validarUsuario() {
         boolean retorno = true;
         String user = tilUsuario.getEditText().getText().toString().trim();
-        if (!user.equals("joan@gmail.com") || user.isEmpty()) {
+        if (!user.equals("joan.consuegra@usach.cl") || user.isEmpty()) {
             tilUsuario.setError("Ingresa usuario válido");
             retorno = false;
         }
