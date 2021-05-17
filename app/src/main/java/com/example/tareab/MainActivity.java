@@ -33,17 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void clickBoton(View queBoton) {
-       if(queBoton.getId() == R.id.btnIniciar){
-          if(validarUsuario() && validarContraseña()){
-              Intent i = new Intent(this, MainActivity2.class);
-              startActivity(i);
-          }
+       if(queBoton.getId() == R.id.btnIniciar) {
+           if (validarUsuario() && validarContraseña()) {
+               Intent i = new Intent(this, MainActivity2.class);
+               startActivity(i);
+           }
+       }
 
-          else if(queBoton.getId() == R.id.btnCancelar)
+          if (queBoton.getId() == R.id.btnCancelar)
            {
                 finish();
           }
-      }//end btnIniciar
     }//end clickBoton
 
 
@@ -120,8 +120,9 @@ public class MainActivity extends AppCompatActivity {
                 tilConstraseña.setError(null);
             }
         });
+    } // end eventos()
 
-    }
+
     private void referencias () {
         tilUsuario = findViewById(R.id.tilUsuario);
         tilConstraseña = findViewById(R.id.tilContraseña);
@@ -130,6 +131,5 @@ public class MainActivity extends AppCompatActivity {
 
         btnIniciar = findViewById(R.id.btnIniciar);
         btnCancelar = findViewById(R.id.btnCancelar);
-
-    }
+    }//end referencias
 }
