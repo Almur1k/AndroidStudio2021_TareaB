@@ -41,7 +41,7 @@
         android:inputType="textPersonName" />
 
     <AutoCompleteTextView
-        android:id="@+id/actvTipo"
+        android:id="@+id/actTipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
