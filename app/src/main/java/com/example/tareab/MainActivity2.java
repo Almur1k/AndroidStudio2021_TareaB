@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -27,6 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
     private Spinner spnEstado;
     private String[] losEstados = new String[4];
     private ArrayAdapter adaptadorEstados;
+    private ArrayList<Productos> savedProd = new ArrayList<>();
 
 
 
@@ -48,12 +51,15 @@ public class MainActivity2 extends AppCompatActivity {
         adaptadorEstados = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, losEstados);
         spnEstado.setAdapter(adaptadorEstados);
 
+
+
         //evento en spinner -> saber qué se seleccionó
         spnEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //position nos entrega la posicion del item en el spinner de forma automatica
-                Toast.makeText(MainActivity2.this, "Seleccionó estado: " + losEstados[position], Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity2.this, "Seleccionó estado: " + losEstados[position], Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -62,7 +68,24 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //inicializar spinner sin valor seleccionado por defecto  - preguntar al profe
+        spnEstado.setSelection(-1);
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+      // TIPO PRODUCTO
+
         // llenar arraylist con tipos de productos
         tipoProd.add(new TipoProducto("1-9", "Mascotas"));
         tipoProd.add(new TipoProducto("2-8", "Libros"));
@@ -80,13 +103,14 @@ public class MainActivity2 extends AppCompatActivity {
         // unir autocomplete text view con arrayList
         adaptadorTipo = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, tipoProd);
         actTipo.setAdapter(adaptadorTipo);
+
         actTipo.setThreshold(3); //desde donde inicia la busqueda por coincidencia de texto
 
         //evento en autocompleteTV (act)  -> saber qué se seleccionó
         actTipo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //position Nonos entrega la posicion del item en el arrayList de forma automatica, nos entrega la posición en la lista de coincidencias así q no nos sirve y hay q arreglarlo:
+                //position No nos entrega la posicion del item en el arrayList de forma automatica, nos entrega la posición en la lista de coincidencias así q no nos sirve y hay q arreglarlo:
                 Object itemSeleccionado = parent.getItemAtPosition(position);
 
                 /*se puede castear, pero no es muy recomendado aquí_
@@ -96,20 +120,12 @@ public class MainActivity2 extends AppCompatActivity {
                 if (itemSeleccionado instanceof TipoProducto){ //instanceof : si algo es instancia de un obj
                     TipoProducto tp = (TipoProducto) itemSeleccionado;
                     Toast.makeText(MainActivity2.this, "Cod Tipo prod: " + tp.getCodigoTipoProd(), Toast.LENGTH_LONG).show();
+
                 }
             }
+
         });
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //inicializar spinner sin valor seleccionado por defecto  - preguntar al profe
-        spnEstado.setSelection(-1);
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -121,15 +137,65 @@ public class MainActivity2 extends AppCompatActivity {
 
         if(queBoton.getId() == R.id.btnOk) {
             //////////////////////////////////////////////////////////////////////////////
-         //   losProductos.add(new Productos());
+            if(validarNom() && validarID()){
+                if()
+                Log.d("TAG_"," Datos de producto: " + etNombreProd.toString() + " " + etIdProducto.toString() +" "+ spnEstado.getSelectedItem().toString()  );
+                Toast.makeText(MainActivity2.this, " Datos de producto: " + etNombreProd.getText().toString() + " " + etIdProducto.getText().toString() +" "+ spnEstado.getSelectedItem().toString()+" "+ actTipo.getText().toString(), Toast.LENGTH_LONG).show();
+                String saveNom = etNombreProd.getText().toString();
+                Integer saveIDP = Integer.parseInt(etIdProducto.getText().toString());
+                String saveSpn = spnEstado.getSelectedItem().toString();
+                String saveAct = actTipo.getText().toString();
+                savedProd.add(new Productos(saveIDP, saveNom, saveAct, saveSpn));
             }
+
+            }//end btnOK
 
         if(queBoton.getId() == R.id.btnVolver) {
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
-            }
+
+            }//end btnVolver
     }//end clickBoton
 
+
+    ///validaciones de campos
+    public boolean validarID(){
+        boolean retorno = true;
+        String vID = etIdProducto.getText().toString().trim();
+        if (vID.isEmpty()) {
+            etIdProducto.setError("Ingrese ID válida");
+            retorno = false;
+        }
+        return retorno;
+    }//validar ID
+
+    public boolean validarNom(){
+        boolean retorno = true;
+        String vNom = etIdProducto.getText().toString().trim();
+        if (vNom.isEmpty()) {
+            etNombreProd.setError("Ingrese nombre");
+            retorno = false;
+        }
+        return retorno;
+    }//validar nombre
+
+
+    public boolean buscarIDP(int idP){
+        boolean encontrado = false;
+        int i = 0;
+        while(encontrado == false && i< savedProd.size()){
+            if (savedProd.get(i).getIdProd().compareTo(idP)== 0) {
+                encontrado = true;
+            }else{
+                i++;
+            }
+        } //end while
+        if(encontrado){
+            etIdProducto.setText(savedProd.get(i).getIdProd());
+            etNombreProd.setText(savedProd.get(i).getNombreProd());
+
+        }
+    }
 
 
 
@@ -158,6 +224,7 @@ public class MainActivity2 extends AppCompatActivity {
         spnEstado = findViewById(R.id.spnEstado);
         btnOk = findViewById(R.id.btnOk);
         btnVolver = findViewById(R.id.btnVolver);
+
     } // end referencias
 
 }//end end
